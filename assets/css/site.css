@@ -6,17 +6,20 @@ a { color:inherit; }
 
 /* Entrance */
 .entrance-page { overflow:hidden; background:#9ba9a7; }
+.entrance-page::after { content:""; position:fixed; z-index:8; inset:0; pointer-events:none; box-shadow:inset 0 0 16vw rgba(28,35,32,.2); }
 .landscape { position:relative; width:100vw; height:100svh; min-height:430px; overflow:hidden; isolation:isolate; }
-.sky { position:absolute; inset:0 0 29%; background:linear-gradient(#9eaeb1 0%,#bdc6c1 58%,#d4d2bd 100%); }
+.sky { position:absolute; inset:0 0 29%; background:linear-gradient(176deg,#91a3a7 0%,#b4bfbb 53%,#d5d1b8 100%); }
 .sky::after { content:""; position:absolute; inset:0; opacity:.22; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.14'/%3E%3C/svg%3E"); mix-blend-mode:multiply; }
 .cloud { position:absolute; height:7%; border-radius:50%; background:rgba(239,237,219,.25); filter:blur(12px); }
 .cloud-one { width:29%; left:7%; top:20%; transform:rotate(-4deg); }
 .cloud-two { width:21%; right:12%; top:35%; }
-.field { position:absolute; inset:68% 0 0; background:linear-gradient(175deg,#7f8a63,#586546 48%,#455439); }
+.horizon { position:absolute; z-index:1; left:-3%; right:-3%; top:66.5%; height:5%; background:linear-gradient(174deg,transparent 0 38%,#687454 42% 59%,#798263 64%); filter:blur(1.5px); }
+.field { position:absolute; z-index:2; inset:68% 0 0; overflow:hidden; background:linear-gradient(175deg,#7f8a63,#586546 48%,#455439); }
 .field::before { content:""; position:absolute; inset:0; opacity:.35; background-image:repeating-linear-gradient(102deg,transparent 0 9px,rgba(28,42,25,.35) 10px,transparent 11px 19px); mask-image:linear-gradient(transparent,#000); }
 .field::after { content:""; position:absolute; left:-5%; right:-5%; top:-5px; height:20px; background:#717d59; filter:blur(3px); }
-.doorway { position:absolute; z-index:3; left:50%; bottom:26.5%; width:min(21vw,190px); height:min(39vw,350px); min-width:126px; min-height:232px; max-height:44vh; padding:0; border:0; background:none; transform:translateX(-50%); cursor:pointer; perspective:900px; -webkit-tap-highlight-color:transparent; }
-.door-frame { position:absolute; inset:0; padding:8px; background:#34312b; box-shadow:0 2px 0 #211f1b, inset 0 0 0 2px #555047; }
+.field-track { position:absolute; left:50%; bottom:-38%; width:20%; height:130%; background:rgba(187,183,142,.12); filter:blur(12px); transform:translateX(-50%) perspective(180px) rotateX(18deg); clip-path:polygon(44% 0,56% 0,100% 100%,0 100%); }
+.doorway { position:absolute; z-index:3; left:50%; bottom:26.5%; width:min(21vw,190px); height:min(39vw,350px); min-width:126px; min-height:232px; max-height:44vh; padding:0; border:0; background:none; transform:translateX(-50%); cursor:pointer; perspective:900px; text-decoration:none; -webkit-tap-highlight-color:transparent; }
+.door-frame { position:absolute; inset:0; padding:8px; background:linear-gradient(90deg,#2b2924,#4b473f 35%,#312e29); box-shadow:0 2px 0 #211f1b, inset 0 0 0 2px #555047, 10px 8px 16px rgba(22,28,18,.2); }
 .door-void { position:absolute; inset:8px; background:#050505; }
 .door { position:absolute; inset:8px; display:block; background:linear-gradient(90deg,#665c4c,#7a6c57 45%,#655948); border:1px solid #332f29; transform-origin:left center; transition:transform 1.15s cubic-bezier(.62,.02,.26,1); backface-visibility:hidden; box-shadow:inset -8px 0 14px rgba(0,0,0,.18); }
 .door::before { content:""; position:absolute; inset:7% 10%; border:1px solid rgba(35,31,25,.4); box-shadow:inset 0 0 0 2px rgba(198,178,143,.09); }
@@ -37,7 +40,7 @@ a { color:inherit; }
   .doorway { bottom:30%; width:142px; height:266px; max-height:39vh; }
   .entrance-hint { bottom:23%; }
 }
-@media (prefers-reduced-motion:reduce) { .door,.threshold { transition-duration:.15s!important; } }
+@media (prefers-reduced-motion:reduce) { .door,.threshold { transition:none!important; } }
 
 /* Interior */
 .site-header { height:var(--header); display:flex; align-items:center; justify-content:space-between; padding:0 clamp(22px,4vw,64px); }
